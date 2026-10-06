@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dokterin – Asisten Kesehatan AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f4f9f8;--card:#fff;--ink:#0e2b30;--mute:#52707a;--line:#d6e5e3;--brand:#0f766e;--brand2:#0b4f4a;--soft:#dcf1ec;--red:#c8372d;--amber:#b7791f;--blue:#2a6f97;--green:#2f855a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1a1d;--card:#112529;--ink:#e6f3f1;--mute:#93b0b5;--line:#1f3a3f;--brand:#3cc7b5;--brand2:#7fe0d1;--soft:#14393c;--red:#ff7a6e;--amber:#f0b45a;--blue:#7db8dc;--green:#6fd29b}}
+:root[data-theme="dark"]{--bg:#0a1a1d;--card:#112529;--ink:#e6f3f1;--mute:#93b0b5;--line:#1f3a3f;--brand:#3cc7b5;--brand2:#7fe0d1;--soft:#14393c;--red:#ff7a6e;--amber:#f0b45a;--blue:#7db8dc;--green:#6fd29b}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 "Public Sans",system-ui,sans-serif}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0}
+.logo{font:800 22px "Fraunces",Georgia,serif;color:var(--brand2);letter-spacing:-.01em}
+.sos{font-size:14px;font-weight:600;color:#fff;background:var(--red);padding:8px 14px;border-radius:999px;text-decoration:none}
+@media (prefers-color-scheme:dark){.sos{color:#2a0a07}}
+h1{font:800 clamp(32px,6.4vw,54px)/1.08 "Fraunces",Georgia,serif;letter-spacing:-.02em;margin:28px 0 14px;max-width:16ch}
+.lead{color:var(--mute);max-width:56ch;margin:0 0 26px}
+.tabs{display:flex;gap:6px;background:var(--soft);padding:5px;border-radius:14px;width:fit-content;max-width:100%}
+.tabs button{border:0;background:none;color:var(--mute);font:600 15px "Public Sans",sans-serif;padding:10px 16px;border-radius:10px;cursor:pointer}
+.tabs button[aria-selected=true]{background:var(--card);color:var(--brand2);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.panel{margin-top:18px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+textarea,input[type=text]{width:100%;border:0;background:none;color:var(--ink);font:400 17px/1.5 "Public Sans",sans-serif;resize:none;outline-offset:4px}
+textarea{min-height:84px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
+.go{border:0;background:var(--brand);color:#fff;font:600 15px "Public Sans",sans-serif;padding:11px 20px;border-radius:12px;cursor:pointer}
+@media (prefers-color-scheme:dark){.go{color:#052522}}
+.go:disabled{opacity:.5;cursor:wait}
+.hint{font-size:13px;color:var(--mute)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.chip{border:1px solid var(--line);background:var(--card);color:var(--ink);font:500 14px "Public Sans",sans-serif;padding:7px 13px;border-radius:999px;cursor:pointer;border-left:4px solid var(--brand)}
+.chip:hover{background:var(--soft)}
+.out{margin-top:22px;display:grid;gap:14px}
+.turn{font-size:15px;color:var(--mute);border-left:3px solid var(--line);padding-left:12px}
+.res{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.res h2{font:700 24px/1.2 "Fraunces",Georgia,serif;margin:0 0 6px}
+.res h3{font:600 14px "Public Sans",sans-serif;color:var(--mute);margin:18px 0 6px}
+.res ul{margin:0;padding-left:20px}.res li{margin:3px 0}
+.badge{display:inline-block;font:600 13px "Public Sans",sans-serif;padding:5px 12px;border-radius:999px;margin-bottom:12px;color:#fff}
+.u-darurat{background:var(--red)}.u-segera{background:var(--amber)}.u-beberapa{background:var(--blue)}.u-mandiri{background:var(--green)}
+@media (prefers-color-scheme:dark){.badge{color:#10201f}}
+.dx{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.dx:first-of-type{border-top:0}.dx b{display:block}.dx span{color:var(--mute);font-size:14px}
+.fit{font:600 12px "Public Sans",sans-serif;color:var(--brand2);background:var(--soft);padding:3px 10px;border-radius:999px;height:fit-content;white-space:nowrap}
+.warn{border-left:4px solid var(--red);background:var(--soft);padding:10px 14px;border-radius:0 10px 10px 0}
+.load{color:var(--mute);display:flex;gap:10px;align-items:center}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--brand);animation:p 1s infinite alternate}
+@keyframes p{to{opacity:.25;transform:scale(.7)}}
+@media (prefers-reduced-motion:reduce){.dot{animation:none}}
+.err{color:var(--red)}
+footer{margin:40px 0 24px;font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:16px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><span class="logo">Dokterin</span><a class="sos" href="tel:119">Darurat? Telepon 119</a></header>
+<h1>Ceritakan keluhan Anda, pahami penyebabnya.</h1>
+<p class="lead">Asisten AI untuk memahami gejala dan mencari informasi penyakit apa pun, dari flu hingga kelainan langka, dalam bahasa yang mudah dimengerti.</p>
+
+<div class="tabs" role="tablist">
+<button role="tab" id="t1" aria-selected="true" aria-controls="p1">Periksa gejala</button>
+<button role="tab" id="t2" aria-selected="false" aria-controls="p2">Cari penyakit</button>
+</div>
+
+<section class="panel" id="p1" role="tabpanel" aria-labelledby="t1">
+<div class="box">
+<textarea id="sx" aria-label="Keluhan Anda" placeholder="Contoh: demam 3 hari, nyeri sendi, dan muncul bintik merah di kulit"></textarea>
+<div class="row"><span class="hint">Sebutkan usia, lama keluhan, dan obat yang sedang dipakai.</span><button class="go" id="sxgo">Analisis keluhan</button></div>
+</div>
+<div class="chips" id="sys"></div>
+<div class="out" id="out1"></div>
+</section>
+
+<section class="panel" id="p2" role="tabpanel" aria-labelledby="t2" hidden>
+<div class="box">
+<input type="text" id="dz" aria-label="Nama penyakit" placeholder="Ketik nama penyakit, mis. demam berdarah, lupus, diabetes">
+<div class="row"><span class="hint">Penyebab, gejala, diagnosis, penanganan, dan pencegahan.</span><button class="go" id="dzgo">Cari informasi</button></div>
+</div>
+<div class="chips" id="eg"></div>
+<div class="out" id="out2"></div>
+</section>
+
+<footer>Dokterin memberikan informasi edukatif dan bukan pengganti dokter. Ia tidak mendiagnosis atau meresepkan obat. Untuk kondisi gawat (nyeri dada, sesak berat, pingsan, perdarahan hebat, kelumpuhan mendadak) segera ke IGD atau telepon 119.</footer>
+</div>
+
+<script>
+var $=function(s){return document.querySelector(s)};
+function h(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+function list(t,arr){if(!arr||!arr.length)return null;var f=document.createDocumentFragment();f.appendChild(h('h3',0,t));var u=h('ul');arr.forEach(function(x){u.appendChild(h('li',0,String(x)))});f.appendChild(u);return f}
+var SYSTEMS=['Jantung & tekanan darah','Paru & pernapasan','Pencernaan','Saraf & kepala','Kulit & rambut','Hormon & diabetes','Ginjal & saluran kemih','Mata, telinga, hidung','Tulang & sendi','Kesehatan jiwa','Anak & bayi','Kehamilan','Infeksi & tropis','Kanker'];
+var EG=['Demam berdarah dengue','Diabetes melitus tipe 2','Tuberkulosis','Lupus','Hipertensi','Asma','Tifoid','Stroke'];
+var sample=null,hist=[];
+if(window.claude&&claude.use){claude.use('sample').then(function(s){sample=s;if(!s){var n=h('p','hint','Fitur AI hanya aktif saat halaman dibuka dari claude.ai.');$('#out1').appendChild(n)}}).catch(function(){})}
+
+SYSTEMS.forEach(function(s){var b=h('button','chip',s);b.onclick=function(){$('#sx').value='Saya mengalami keluhan pada area '+s.toLowerCase()+': ';$('#sx').focus()};$('#sys').appendChild(b)});
+EG.forEach(function(s){var b=h('button','chip',s);b.onclick=function(){$('#dz').value=s;lookup()};$('#eg').appendChild(b)});
+
+function tab(n){[1,2].forEach(function(i){$('#t'+i).setAttribute('aria-selected',i==n);$('#p'+i).hidden=i!=n})}
+$('#t1').onclick=function(){tab(1)};$('#t2').onclick=function(){tab(2)};
+
+var RULE='Anda adalah Dokterin, asisten informasi kesehatan berbahasa Indonesia yang hangat, jelas, dan berhati-hati. Anda tidak mendiagnosis pasti dan tidak meresepkan obat keras; sebut jenis obat bebas umum hanya bila aman. Selalu utamakan keselamatan: bila ada tanda bahaya, nyatakan darurat. Jawab HANYA dengan JSON valid tanpa teks lain atau tanda kutip balik. ';
+
+async function ask(prompt,out,btn){
+  if(!sample){out.appendChild(h('p','err','Fitur AI belum tersedia di tampilan ini.'));return null}
+  btn.disabled=true;var ld=h('div','load');ld.appendChild(h('span','dot'));ld.appendChild(h('span',0,'Menganalisis…'));out.appendChild(ld);
+  try{return await sample.json(prompt,{modelTier:'default',cache:false})}
+  catch(e){var m=e&&e.code==='not_granted'?'Izin untuk memakai AI ditolak. Muat ulang halaman lalu setujui izin.':e&&e.code==='rate_limited'?'Terlalu banyak permintaan. Tunggu sebentar lalu coba lagi.':'Gagal memproses. Periksa koneksi lalu coba lagi.';out.appendChild(h('p','err',m));return null}
+  finally{btn.disabled=false;ld.remove()}
+}
+
+async function check(text){
+  text=(text||$('#sx').value).trim();if(!text)return;
+  var out=$('#out1');out.appendChild(h('div','turn','Anda: '+text));$('#sx').value='';
+  var ctx=hist.length?'Riwayat percakapan:\n'+hist.join('\n')+'\n\n':'';
+  var r=await ask(RULE+'Format: {"urgensi":"darurat|segera|beberapa-hari|mandiri","ringkasan":"2-3 kalimat","kemungkinan":[{"nama":"","kecocokan":"tinggi|sedang|rendah","alasan":""}],"langkah":["langkah yang bisa dilakukan sekarang"],"tandaBahaya":["kapan harus ke IGD"],"tanya":["1-3 pertanyaan lanjutan yang paling berguna"]}. Maksimal 4 kemungkinan, urut dari yang paling cocok. Urgensi darurat bila ada risiko nyawa.\n\n'+ctx+'Keluhan baru dari pengguna: '+text,out,$('#sxgo'));
+  if(!r)return;hist.push('Pengguna: '+text);hist.push('Dokterin: '+(r.ringkasan||''));if(hist.length>12)hist=hist.slice(-12);
+  var U={darurat:['u-darurat','Darurat: segera ke IGD / telepon 119'],segera:['u-segera','Segera periksa ke dokter hari ini'],'beberapa-hari':['u-beberapa','Periksa ke dokter dalam beberapa hari'],mandiri:['u-mandiri','Bisa dirawat mandiri, pantau perkembangan']};
+  var u=U[r.urgensi]||U['beberapa-hari'];
+  var c=h('div','res');c.appendChild(h('span','badge '+u[0],u[1]));c.appendChild(h('p',0,r.ringkasan||''));
+  if(r.kemungkinan&&r.kemungkinan.length){c.appendChild(h('h3',0,'Kemungkinan penyebab'));r.kemungkinan.forEach(function(k){var d=h('div','dx'),l=h('div');l.appendChild(h('b',0,k.nama));l.appendChild(h('span',0,k.alasan));d.appendChild(l);d.appendChild(h('span','fit','Kecocokan '+k.kecocokan));c.appendChild(d)})}
+  var a=list('Yang bisa dilakukan sekarang',r.langkah);if(a)c.appendChild(a);
+  if(r.tandaBahaya&&r.tandaBahaya.length){var w=h('div','warn');w.appendChild(list('Segera ke IGD jika',r.tandaBahaya));c.appendChild(w)}
+  if(r.tanya&&r.tanya.length){c.appendChild(h('h3',0,'Bantu saya lebih akurat'));var cs=h('div','chips');r.tanya.forEach(function(q){var b=h('button','chip',q);b.onclick=function(){$('#sx').value='Jawaban untuk "'+q+'": ';$('#sx').focus()};cs.appendChild(b)});c.appendChild(cs)}
+  out.appendChild(c);c.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+
+async function lookup(){
+  var q=$('#dz').value.trim();if(!q)return;var out=$('#out2');out.textContent='';
+  var r=await ask(RULE+'Format: {"nama":"","kategori":"","ringkasan":"3 kalimat","penyebab":[],"gejala":[],"diagnosis":["pemeriksaan yang lazim"],"penanganan":["pendekatan umum, tanpa dosis"],"pencegahan":[],"kapanKeDokter":[]}. Jelaskan penyakit atau kondisi ini untuk orang awam: '+q+'. Jika bukan penyakit/kondisi medis, isi nama dengan "Tidak dikenali" dan jelaskan di ringkasan.',out,$('#dzgo'));
+  if(!r)return;var c=h('div','res');c.appendChild(h('span','badge u-beberapa',r.kategori||'Informasi penyakit'));c.appendChild(h('h2',0,r.nama||q));c.appendChild(h('p',0,r.ringkasan||''));
+  [['Penyebab',r.penyebab],['Gejala',r.gejala],['Pemeriksaan',r.diagnosis],['Penanganan umum',r.penanganan],['Pencegahan',r.pencegahan],['Kapan harus ke dokter',r.kapanKeDokter]].forEach(function(x){var l=list(x[0],x[1]);if(l)c.appendChild(l)});
+  out.appendChild(c);
+}
+
+$('#sxgo').onclick=function(){check()};
+$('#sx').addEventListener('keydown',function(e){if(e.key==='Enter'&&(e.ctrlKey||e.metaKey))check()});
+$('#dzgo').onclick=lookup;
+$('#dz').addEventListener('keydown',function(e){if(e.key==='Enter')lookup()});
+</script>
+</body>
+</html>
